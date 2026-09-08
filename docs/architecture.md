@@ -61,4 +61,4 @@ The graph shows persisted relations; a relationship may be `contains`, `derived_
 
 ## Reference implementation boundary
 
-`reference/core.py` implements local intake, a deterministic draft, idempotent requests, digest-bound review and event records in SQLite. `reference/server.py` serves only named assets and routes on loopback with same-origin session protection. It has no model process, distributed lease, background worker or external effect. It is not a hardened multi-user web framework.
+`reference/core.py` implements local intake, source revisions, idempotent drafts, digest-bound review and task progress. `jobs.py` persists jobs and UTC interval routines; `runner.py` supervises one bounded provider child and finalizes results under a token/source/config fence. `memory.py` provides source-aware retrieval; `layout.py` persists presentation with revision checks. `server.py` exposes named operations on loopback. This is a local single-owner runtime, not a distributed or multi-user platform. See [readiness](readiness.md).

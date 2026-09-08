@@ -1,7 +1,8 @@
 # Workspace design contract
 Audience, lighting, input devices: [context]
 Primary object and task: [domain]
-Three compositions considered: [map/workbench/board/timeline/hybrid sketches]
+Three orbital arrangements considered: [domain nodes, ARMS orbit, supporting instruments]
+Contextual work views: [workbench/board/timeline inside app windows]
 Selected composition and reason: [evidence]
 Header budget and useful readouts: [no masthead/hero]
 Lower-edge controls: [no website footer]

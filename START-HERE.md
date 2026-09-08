@@ -1,5 +1,7 @@
 # Build your own AgentOS
 
+For immediate use, follow [docs/quickstart.md](docs/quickstart.md). The local runtime now includes jobs, source-aware memory, interval routines, persistent widgets and recovery.
+
 1. Read `docs/arms.md` to understand what each layer owns and how they interact.
 2. Fill `templates/product-brief.md` with the user’s real recurring job. Select only one first workflow. Use `examples/` for shapes, never as invented user facts.
 3. Inspect tools and authorizations. Fill `templates/capability-matrix.md`; configured is not verified. Keep unknown access explicit.

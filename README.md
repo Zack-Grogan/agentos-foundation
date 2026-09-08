@@ -8,7 +8,9 @@ An agent-ready public template for turning repeatable work into a durable system
 
 ARMS supplies the structure. Your domain supplies the objects and workflows. The interface gives those objects a useful place to live.
 
-## Start
+## Start today
+
+Follow [the quickstart](docs/quickstart.md) for a complete local workflow and [the readiness boundary](docs/readiness.md) for the exact shipped scope.
 
 Use GitHub’s **Use this template** button, or clone this repository. Then give your coding agent this prompt:
 
@@ -19,11 +21,13 @@ For the working local reference:
 ```sh
 python3 -m unittest discover -s tests -v
 python3 scripts/check.py
+python3 -m reference.cli init
+python3 -m reference.cli doctor
 python3 -m reference.server
 # Open http://127.0.0.1:4321 ; Ctrl-C stops the server.
 ```
 
-Python 3.11+; no third-party runtime dependencies or API keys. Enter a project brief, create a draft, inspect its sources, and accept or reject it. SQLite persists actual local records in ignored `.agentos/`. The planner is a **deterministic reference**, not an LLM. No external actions or background schedules run.
+Python 3.11+; no third-party runtime dependencies or API keys. Enter a project brief, create a draft, inspect its sources, and accept or reject it. SQLite persists actual local records in ignored `.agentos/`. The default planner is **deterministic**. Durable jobs can also use an explicitly configured ACP or HTTP provider. Local interval routines start paused and automatic ticking requires `--routines`. There is no external action executor.
 
 ## What is here
 
@@ -36,6 +40,7 @@ Python 3.11+; no third-party runtime dependencies or API keys. Enter a project b
 | Composer | Dedicated [composer design skill](.agents/skills/composer-design/SKILL.md) and [interaction contract](docs/design/composer.md) |
 | Customization | [Product and engineering templates](templates/README.md), three [domain profiles](examples/README.md), [scaffolder](scripts/new_workspace.py) |
 | Implementation | Small [reference workspace](reference/README.md), storage and review boundary, browser UI, automated tests |
+| Ready-to-use operations | [Quickstart](docs/quickstart.md), [provider setup](docs/provider-setup.md), versioned migrations, consistent backup/restore and [fresh-copy smoke test](scripts/smoke_template.py) |
 | Evidence | [Acceptance gates](docs/acceptance.md), [source review](docs/patterns.md), [provenance and rights](docs/provenance.md), [verification](docs/verification.md) |
 | Capability map | [Catalog](skills/catalog.md) of the supplied skill capabilities, including optional specialist workflows |
 

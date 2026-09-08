@@ -50,3 +50,7 @@ See [catalog.md](catalog.md) for the supplied broader capability inventory and e
 | --- | --- |
 | [composer-design](../.agents/skills/composer-design/SKILL.md) | Detailed composer design and behavior from AI Elements and T3 Code |
 | [provider-compatibility](../.agents/skills/provider-compatibility/SKILL.md) | Subscription, ACP and HTTP endpoint compatibility |
+
+## Behavioral examples
+
+Use [the evaluation guide](../docs/skill-evaluation.md) and [worked domain examples](../examples/README.md). A fresh-copy smoke test validates the shipped workflow; a fresh-agent exercise evaluates whether the instructions produce a suitable customization.

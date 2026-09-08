@@ -10,7 +10,7 @@ List three to six domain nouns: projects, experiments, clients, cases, positions
 
 ARMS should power the system; it need not become four permanent navigation pages. A project inspector can reveal its sources (Memory), available procedure (Skills), recent jobs (Routines), and connected tools (Applications) in context.
 
-## Choose a composition, not a skin
+## Keep the orbital shell; choose useful work views
 
 | Composition | Fits | Spatial rule | Avoid when |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ ARMS should power the system; it need not become four permanent navigation pages
 | Timeline | Incidents, schedules, investigations | Time and causality drive placement; details remain in context | Dates are incidental |
 | Hybrid | A stable domain center plus a review queue | One dominant composition; others become local lenses | It needs three simultaneous navigation models |
 
-Generate three rough compositions with the same real objects and same first task. Compare findability, density, attention, recovery and narrow-screen behavior. Choose deliberately in `design-brief.md`. Do not default every domain to a circular constellation.
+The template default is a central circle with multiple meaningful orbits. Keep it across profiles: inner orbit for domain work, outer orbit for ARMS capabilities. Compare three arrangements of orbital content and instruments, then choose the clearest one in `design-brief.md`. Workbench, board and timeline views belong inside contextual app windows; replacing the shared orbital center requires an explicit owner decision.
 
 ## The five layers of a workspace
 

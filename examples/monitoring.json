@@ -7,9 +7,10 @@
     "Alerts",
     "Reviews"
   ],
-  "composition": "anchored-map",
+  "composition": "orbital",
   "first_job": "Turn a dated observation into a reviewable investigation plan.",
   "external_writes": false,
   "routines_enabled": false,
-  "provider": "deterministic-reference"
+  "provider": "deterministic-reference",
+  "detail_view": "anchored-map"
 }

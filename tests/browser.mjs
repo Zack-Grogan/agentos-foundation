@@ -35,6 +35,7 @@ try {
   const page = await browser.newPage({
     viewport: { width: 1440, height: 1050 },
   });
+  page.setDefaultTimeout(15000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto(url);
@@ -83,7 +84,9 @@ try {
   await page.getByRole("button", { name: "Accept as local project" }).click();
   await page.getByRole("button", { name: "Open accepted project" }).click();
   await page
-    .getByText("No task has been executed by this reference.")
+    .getByText(
+      "Task status records your progress. No external action is executed.",
+    )
     .waitFor();
   await page.keyboard.press("Escape");
   await page.reload();
@@ -96,16 +99,25 @@ try {
     .first()
     .getByRole("button", { name: "Hide" })
     .click();
+  await page
+    .locator(".widget-controls")
+    .first()
+    .getByRole("button", { name: "Show", exact: true })
+    .waitFor();
   await page.keyboard.press("Escape");
   await page.reload();
+  await page.locator("#as-of").filter({ hasText: /\d/ }).waitFor();
   assert.equal(await page.locator("#sources-panel").isVisible(), false);
   await page
     .getByRole("button", { name: "All instruments", exact: true })
     .click();
   await page.getByRole("button", { name: "Restore layout" }).click();
-  assert.equal(await page.locator("#sources-panel").isVisible(), true);
+  await page.locator("#sources-panel").waitFor({ state: "visible" });
+  await page.locator("#inspector").waitFor({ state: "hidden" });
   await page.getByRole("button", { name: "List view", exact: true }).click();
+  await page.getByRole("button", { name: "Map view", exact: true }).waitFor();
   await page.reload();
+  await page.getByRole("button", { name: "Map view", exact: true }).waitFor();
   assert.equal(
     await page.locator("#orbit").getAttribute("class"),
     "orbit list",
@@ -152,7 +164,7 @@ try {
     true,
   );
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.getByRole("button", { name: "Projects 1 accepted" }).click();
+  await page.locator(".projects-node").click();
   await page
     .getByRole("button", {
       name: "Synthetic example · Research studio Open record",
@@ -173,7 +185,7 @@ try {
   if (browser) await browser.close();
   server.kill("SIGTERM");
   await new Promise((resolve) => {
-    if (server.exitCode !== null) resolve();
+    if (server.exitCode !== null || server.signalCode !== null) resolve();
     else server.once("exit", resolve);
   });
   await rm(data, { recursive: true, force: true });

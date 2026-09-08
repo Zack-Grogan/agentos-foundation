@@ -12,3 +12,5 @@ Read [the compatibility guide](../../../docs/providers.md) and [source patterns]
 5. Add one opt-in adapter with explicit limits and no automatic login, billing fallback or credential copying.
 6. Test protocol normalization with fixtures, then an authorized live prompt, cancellation/denial and restart. Keep evidence levels explicit.
 7. Update the dated compatibility matrix and provider contract; preserve original source references and unresolved differences.
+
+For representative and failure cases, read [the evaluation guide](../../../docs/skill-evaluation.md). Use [the quickstart](../../../docs/quickstart.md) for the implemented runtime path and run `python3 scripts/smoke_template.py` to verify a fresh copy.

@@ -13,3 +13,5 @@ Copy only what the current phase needs. Replace every bracketed field with an ob
 - `context-index.md`, `decision.md`, `handoff.md`: durable navigation and continuity.
 - `integration.md`: exact application operation and verification.
 - `review.md`: artifact-specific decision.
+
+`runtime-providers.json` is the strict, executable workspace provider configuration example. It is separate from the broader capability-planning `providers.json`; copy it only into private runtime storage and configure one instance explicitly.

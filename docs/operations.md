@@ -2,9 +2,11 @@
 
 ## Local reference
 
-Run `python3 -m reference.server`, open `http://127.0.0.1:4321`, stop with Ctrl-C. Use `--port` for an explicit alternate address and `--data-dir` for an isolated workspace. Runtime data lives in `.agentos/workspace.sqlite3`; UI preferences are browser-local and disposable. Deleting browser preferences must never delete domain records.
+Run `python3 -m reference.server`, open `http://127.0.0.1:4321`, stop with Ctrl-C. Use `--port` for an explicit alternate address and `--data-dir` for an isolated workspace. Runtime data lives in `.agentos/workspace.sqlite3`; Widget layout persists in SQLite; capture text drafts are browser-local and disposable. Deleting browser preferences must never delete domain records.
 
-For backup, stop the process and copy the entire data directory to a private destination. Restore to a new directory, start with `--data-dir`, and compare sources, drafts, review states, events and accepted projects. Keep the original until the restored copy is verified. No deletion is required to restore. For a running production SQLite app, use its backup API rather than copying an active DB file.
+Use `python3 -m reference.cli backup ../new-backup` for a consistent database copy and checksum manifest. Restore with `python3 -m reference.cli restore ../new-backup ../new-restored-data`, then start with that `--data-dir`. Existing destinations are refused. Restore pauses routines and interrupts saved jobs; native account profiles are not backed up. See [quickstart](quickstart.md) for exact steps.
+
+The shipped scheduler uses UTC elapsed-time intervals and latest-occurrence coalescing. The following cron/DST discussion is the extension contract for a future wall-clock scheduler, not a claim of current cron support.
 
 ## Routine runbook contract
 

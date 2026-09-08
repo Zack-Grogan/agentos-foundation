@@ -1,4 +1,5 @@
 """Small opt-in ACP v1 stdio client. Protocol denial is NOT an OS sandbox."""
+
 import asyncio
 import contextlib
 import json
@@ -17,14 +18,23 @@ class ACPClient:
     One client per provider instance/session. No auto-login, downloads, ambient
     environment copying, client filesystem tools, or approval grants.
     """
+
     def __init__(self, command, *, cwd, environment, timeout=30, event_limit=2000):
         if not command or not all(isinstance(a, str) and a for a in command):
             raise ACPError("Provide an explicit executable argument vector.")
         if not Path(command[0]).is_absolute() or not Path(cwd).is_absolute():
             raise ACPError("Executable and workspace must be absolute paths.")
-        if not isinstance(environment, dict) or not 0 < timeout <= 300 or not 1 <= event_limit <= 10000:
+        if (
+            not isinstance(environment, dict)
+            or not 0 < timeout <= 300
+            or not 1 <= event_limit <= 10000
+        ):
             raise ACPError("Invalid environment or limits.")
-        self.command, self.cwd, self.environment = list(command), str(cwd), dict(environment)
+        self.command, self.cwd, self.environment = (
+            list(command),
+            str(cwd),
+            dict(environment),
+        )
         self.timeout, self.event_limit = timeout, event_limit
         self.pending, self.updates = {}, []
         self.update_bytes = 0
@@ -35,15 +45,29 @@ class ACPClient:
         if self.process is not None:
             raise ACPError("Client already started.")
         self.process = await asyncio.create_subprocess_exec(
-            *self.command, cwd=self.cwd, env=self.environment, stdin=asyncio.subprocess.PIPE,
-            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
-            limit=1_000_000, start_new_session=os.name == "posix")
+            *self.command,
+            cwd=self.cwd,
+            env=self.environment,
+            stdin=asyncio.subprocess.PIPE,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            limit=1_000_000,
+            start_new_session=os.name == "posix",
+        )
         self.reader = asyncio.create_task(self._read())
         self.stderr = asyncio.create_task(self._drain_stderr())
         try:
-            result = await self.request("initialize", {"protocolVersion": 1,
-                "clientCapabilities": {"fs": {"readTextFile": False, "writeTextFile": False}, "terminal": False},
-                "clientInfo": {"name": "agentos-foundation", "version": "0.1.0"}})
+            result = await self.request(
+                "initialize",
+                {
+                    "protocolVersion": 1,
+                    "clientCapabilities": {
+                        "fs": {"readTextFile": False, "writeTextFile": False},
+                        "terminal": False,
+                    },
+                    "clientInfo": {"name": "agentos-foundation", "version": "0.1.0"},
+                },
+            )
             if result.get("protocolVersion") != 1:
                 raise ACPError("Unsupported negotiated ACP version.")
             self.capabilities = result
@@ -70,7 +94,9 @@ class ACPClient:
             await self._send({"id": request_id, "method": method, "params": params})
             return await asyncio.wait_for(future, self.timeout)
         except asyncio.TimeoutError:
-            raise ACPError("ACP request timed out; do not infer a completed outcome.") from None
+            raise ACPError(
+                "ACP request timed out; do not infer a completed outcome."
+            ) from None
         finally:
             self.pending.pop(request_id, None)
 
@@ -85,19 +111,39 @@ class ACPClient:
                     if "id" in message:
                         if message["method"] == "session/request_permission":
                             # ACP specifies cancellation when no permission decision is granted.
-                            await self._send({"id": message["id"], "result": {"outcome": {"outcome": "cancelled"}}})
+                            await self._send(
+                                {
+                                    "id": message["id"],
+                                    "result": {"outcome": {"outcome": "cancelled"}},
+                                }
+                            )
                         else:
-                            await self._send({"id": message["id"], "error": {"code": -32601, "message": "Client capability unavailable"}})
+                            await self._send(
+                                {
+                                    "id": message["id"],
+                                    "error": {
+                                        "code": -32601,
+                                        "message": "Client capability unavailable",
+                                    },
+                                }
+                            )
                     elif message["method"] == "session/update":
                         self.update_bytes += len(line)
-                        if len(self.updates) >= self.event_limit or self.update_bytes > 4_000_000:
+                        if (
+                            len(self.updates) >= self.event_limit
+                            or self.update_bytes > 4_000_000
+                        ):
                             raise ACPError("ACP event limit exceeded.")
                         self.updates.append(message.get("params", {}))
                 elif "id" in message:
                     future = self.pending.get(message["id"])
                     if future and not future.done():
                         if "error" in message:
-                            future.set_exception(ACPError("ACP peer rejected request; inspect a redacted provider diagnostic."))
+                            future.set_exception(
+                                ACPError(
+                                    "ACP peer rejected request; inspect a redacted provider diagnostic."
+                                )
+                            )
                         else:
                             future.set_result(message.get("result", {}))
         except Exception:
@@ -119,10 +165,15 @@ class ACPClient:
     async def prompt(self, session_id, text):
         if not isinstance(text, str) or not text.strip() or len(text) > 60000:
             raise ACPError("Expected bounded nonempty text.")
-        return await self.request("session/prompt", {"sessionId": session_id, "prompt": [{"type": "text", "text": text}]})
+        return await self.request(
+            "session/prompt",
+            {"sessionId": session_id, "prompt": [{"type": "text", "text": text}]},
+        )
 
     async def cancel(self, session_id):
-        await self._send({"method": "session/cancel", "params": {"sessionId": session_id}})
+        await self._send(
+            {"method": "session/cancel", "params": {"sessionId": session_id}}
+        )
         # Notification only: wait for prompt result/process outcome before showing stopped.
 
     async def close(self):

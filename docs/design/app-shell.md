@@ -47,11 +47,11 @@ Avoid equal rounded cards, repeated giant headings, empty padding, decoration-on
 
 ## Arrangement and persistence
 
-For an anchored-map composition, keep equal-width left and right instrument rails so the domain center stays at the viewport center. Opening an inspector or assistant overlays that canvas; it must not squeeze the rails and shift the center. Other compositions should define their own equally explicit invariant.
+The shared template shell uses a central circle with layered orbits. Keep equal-width left and right instrument rails so the domain center stays at the viewport center. Opening an inspector or assistant overlays that canvas; it must not squeeze the rails and shift the center. Research workbenches, operations boards and other work views open inside app windows; they do not replace the orbital center unless the owner explicitly changes that design decision.
 
 Make customization explicit through All instruments: add/show, hide, restore, reorder, and supported size/collapse controls. Preserve widget IDs and validate layout versions/revisions. Save presentation independently of application records. Never delete domain data when removing a widget. Dragging is optional; clickable controls must perform the same supported arrangement actions. Do not implement a fake resize handle.
 
-The small reference implements show/hide/restore for selected instruments, rail swapping, and a list/map view. It does not claim a complete freeform drag/resize manager. Custom applications can add those capabilities using the widget contract and interaction tests.
+The reference implements a server-persisted widget registry with show/hide/restore, collapse/expand, density, rail placement, ordering and a list/map view. It does not claim a complete freeform drag/resize manager. Custom applications can add those capabilities using the widget contract and interaction tests.
 
 ## App windows and continuity
 
@@ -66,3 +66,7 @@ Reject a proposed design if it introduces a large welcome/hero title, a conventi
 ## Verification
 
 At desktop width, measure the center before/after opening an inspector and arrangement controls; it should not move. Assert there is no conventional footer and the top strip stays within its budget. Complete capture/review/source navigation without leaving the workspace. Test hide/restore without data loss and keyboard/click-only operation. At narrow width, use a deliberate ordered composition and keep the control tray from covering content.
+
+## Orbital meaning
+
+The center identifies the active workspace and opens its app views. The inner orbit groups domain records: evidence/intake/observations, drafts, accepted work and run receipts. The outer orbit exposes the ARMS capabilities: Skills, Memory, Routines and Apps. A ring is a stable navigation relationship, not an invented similarity score. Narrow screens and the explicit list mode retain access to every destination without forcing tiny orbital controls.

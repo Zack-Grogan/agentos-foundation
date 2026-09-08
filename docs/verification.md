@@ -1,34 +1,37 @@
-# Verification record
+# Verification record — 0.2.0
 
-Checked locally on 2026-09-08. This record concerns **agentos-foundation**, not the source applications used for inspiration.
+Checked locally on 2026-09-08 against this template, not its source applications.
 
-## Automated behavior
+## Behavioral checks
 
-`python3 -W error::ResourceWarning -m unittest discover -s tests -v`: **21 tests passed**, Python 3.14 on macOS.
+`python3 -W error::ResourceWarning -m unittest discover -s tests -v`: **38 tests passed** on macOS / Python 3.14.
 
-Covered: full persisted local workflow; duplicate capture/draft and repeated/competing review; stale/tampered artifact and changed source; failed validation; rejected draft; incomplete input; backup restore; HTTP origin, session and CSRF boundary; Host/proxy rejection; named asset/operation allowlist; untrusted text as data; scaffold isolation/no overwrite; three endpoint request/response dialects; an actual local HTTP peer and redirect rejection; actual ACP subprocess initialization, streamed update, permission denial, cancellation, timeout and malformed peer.
+Coverage includes persisted capture/draft/review; duplicate and competing acceptance; source revisions and stale decisions; task status via the browser; explicit file import and symlink refusal; real child-process execution; configured HTTP and ACP peers through the complete job path; wall timeout and running cancellation; fenced result adoption; stale worker recovery; paused/due/coalesced interval routines; overlap and pause; persistent widget layout/CAS; old-schema migration; refusal of future/foreign schemas and missing databases; checksummed backup/restore with paused routines; manifest-based scaffolding, unrelated-file exclusion and read-only customization-preserving update planning; HTTP session/origin/CSRF/Host/path boundaries.
+
+The provider peers are controlled fixtures. No live subscriber credentials or model usage were consumed.
+
+## Fresh-copy acceptance
+
+`python3 scripts/smoke_template.py`: passed. A new temporary copy runs the documented CLI sequence: init → doctor → explicit Markdown import → durable skill job → exact review → memory retrieval → enabled routine occurrence → duplicate trigger check → consistent backup → verified new-directory restore. Restored routines are paused. No original private files are imported.
+
+This is an automated fresh-copy test, not a claimed independent fresh-LLM evaluation. The separate agent exercise is documented in `docs/skill-evaluation.md`.
 
 ## Browser
 
-`npm ci --ignore-scripts`, `npx playwright install chromium`, `npm run test:browser`.
+`npm run test:browser`: both suites passed in Chromium / Playwright 1.58.2.
 
-Passed in headless Chromium with Playwright 1.58.2. The test starts its own temporary loopback server and isolated database, then closes them. It covers capture, draft, explicit acceptance, opening the accepted project, refresh persistence, hide/restore and list/map preferences, capture draft recovery, inert malicious source text, modal focus containment, Escape/focus return, 390px layout without horizontal overflow, and reduced-motion mode. JavaScript page errors: zero.
+The main app suite covers capture, review, accepted records, reload persistence, source rendering, layout recovery, keyboard focus, Escape, narrow layout and reduced motion. App-shell assertions require no website footer, a header no taller than 56px, equal rails and an unchanged viewport-centered map when app windows open.
 
-App-shell checks verify a header no taller than 56px, no conventional footer, equal-width rails, and an unchanged viewport-centered anchor when capture/inspectors open.
+The second suite creates **three fresh template copies**, selects three domain profiles with a shared orbital shell and contextual work views, completes durable jobs and review, changes a task's status, searches memory, persists collapse/restore and checks 390px layout. JavaScript page errors: zero. Rendered profile screenshots were inspected; all input is synthetic.
 
-Rendered desktop (1440px) and narrow (390px) screenshots were visually inspected. All shown records are labeled synthetic inputs produced by the test workflow. To deliberately update the images: `UPDATE_SCREENSHOTS=1 npm run test:browser`.
+Regenerate images explicitly with `UPDATE_SCREENSHOTS=1 npm run test:browser`. Normal test runs do not overwrite committed screenshots.
 
 ## Repository checks
 
-`python3 scripts/check.py` validates local Markdown links, skill metadata, JSON parsing and key public-export boundaries. The architectural schema also passed Draft 2020-12 meta-validation using `jsonschema`. It is a lightweight check, not a comprehensive secret scanner or JSON Schema validator. The publication review additionally inspected tracked content and excluded private runtime data, source PDFs, private chats, source-app screenshots and account details.
+`python3 scripts/check.py`: local links, skill metadata, JSON, disabled provider/routine templates and export boundaries. `python3 scripts/check.py --strict-template` additionally compares the reviewed distribution manifest with actual file hashes. Draft 2020-12 schema meta-validation was performed for the original architectural contracts. Ruff undefined/unused-code checks pass.
 
-## Explicit limits
+GitHub CI repeats Python 3.11/3.14 checks, fresh-copy acceptance and both browser suites on Linux. Read the live Actions result for the published commit; do not infer it from this local record.
 
-- No paid provider calls, subscriber login flows or live model sessions were exercised.
-- ACP is a fixture-tested transport core, not verified full vendor-extension compatibility.
-- HTTP adapters are non-streaming, text-only subsets; no tool loop or automatic fallback.
-- The reference planner is deterministic, and acceptance creates local records only.
-- No background scheduler, distributed worker lease, hosted deployment or multi-user access is implemented.
-- Browser preference persistence is not cross-device layout synchronization.
-- Source applications' historical test counts and live-state claims were not reused as foundation evidence.
-- GitHub Actions defines Linux Python 3.11/3.14 and browser checks; its live result should be read from GitHub, not inferred from this local record.
+## Scope
+
+Ready for a single-user trusted local workspace with deterministic operation and opt-in text-plan providers. Full conversational streaming/voice, provider-specific extension UIs, client tool grants, cron/DST scheduling, laptop-off hosting, multi-user access and a general external-action executor remain deliberate extensions. Native account entitlement and confinement require the user's own provider setup and a real scoped run. The local template's tests do not establish those account-specific facts.

@@ -1,6 +1,6 @@
 # Subscriptions, ACP and model endpoints
 
-**Research checked 2026-09-08.** This is a public instruction/template repository for users to construct and operate their own private, locally scoped AgentOS. The primary agent lane uses each user’s own native account session; it is not a shared credential gateway or hosted inference service. Technical compatibility, authentication, entitlement, and permission to distribute an integration are separate questions. This table records documentation/source evidence, not a live test of the reader’s accounts. All integrations remain opt-in.
+**Research checked 2026-09-08.** This is a public instruction/template repository for users to construct and operate their own private, locally scoped AgentOS. The primary agent lane uses each user’s own native account session; it is not a shared credential gateway or hosted inference service. Technical compatibility, authentication, entitlement, and permission to distribute an integration are separate questions. This table records documentation/source evidence, not a live test of the reader’s accounts. All integrations remain opt-in. See [provider setup](provider-setup.md) for the implemented local job path.
 
 ## Two integration lanes
 

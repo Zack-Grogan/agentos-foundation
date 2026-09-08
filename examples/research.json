@@ -7,9 +7,10 @@
     "Notes",
     "Briefs"
   ],
-  "composition": "workbench",
+  "composition": "orbital",
   "first_job": "Turn selected evidence into a reviewable research plan.",
   "external_writes": false,
   "routines_enabled": false,
-  "provider": "deterministic-reference"
+  "provider": "deterministic-reference",
+  "detail_view": "workbench"
 }

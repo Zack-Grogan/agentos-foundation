@@ -947,3 +947,282 @@ form .primary {
     scroll-behavior: auto !important;
   }
 }
+.instrument.collapsed > :not(.section-heading) {
+  display: none;
+}
+.instrument.compact .record,
+.instrument.compact .event {
+  padding: 9px 0;
+}
+.instrument.compact .instrument-note {
+  margin-top: 8px;
+}
+.task-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+.task-row span {
+  flex: 1;
+}
+select {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  max-width: 100%;
+}
+.routine-row {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+#domain-surface {
+  width: 100%;
+  align-self: start;
+  max-height: calc(100svh - 230px);
+  overflow: auto;
+  padding: 22px 8px;
+}
+#domain-surface > h2 {
+  font:
+    30px Georgia,
+    serif;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 25px;
+}
+#domain-surface > h3 {
+  font:
+    23px Georgia,
+    serif;
+}
+#domain-surface > p {
+  line-height: 1.8;
+}
+.source-shelf {
+  margin-top: 25px;
+  border-top: 1px solid var(--line);
+}
+.work-lanes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+.work-lanes section:first-child {
+  grid-column: 1/-1;
+}
+.work-lanes h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--amber);
+  letter-spacing: 1px;
+}
+.error {
+  color: var(--error);
+}
+.widget-controls {
+  padding: 16px 0;
+}
+.widget-controls span {
+  width: 100%;
+  font-weight: 500;
+}
+.widget-controls button {
+  font-size: 11px;
+  min-height: 36px;
+}
+#inspector-body > input,
+#inspector-body > textarea {
+  margin: 12px 0;
+}
+@media (max-width: 720px) {
+  #domain-surface {
+    max-height: none;
+    padding: 15px 0;
+  }
+  .work-lanes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .task-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .widget-controls button {
+    min-height: 44px;
+  }
+}
+body[data-composition="workbench"] .field,
+body[data-composition="board"] .field {
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+/* The shared orbital shell is invariant across domain profiles. */
+.orbit {
+  height: 620px;
+}
+.orbit-ring.outer {
+  width: 580px;
+  height: 580px;
+  aspect-ratio: auto;
+}
+.orbit-ring.inner {
+  width: 360px;
+  height: 360px;
+  opacity: 0.8;
+}
+.spoke.horizontal {
+  width: 360px;
+}
+.spoke.vertical {
+  height: 360px;
+}
+.sources-node {
+  left: 50%;
+  top: calc(50% - 180px);
+}
+.projects-node {
+  left: 50%;
+  top: calc(50% + 180px);
+}
+.drafts-node {
+  left: calc(50% + 180px);
+  top: 50%;
+}
+.runs-node {
+  left: calc(50% - 180px);
+  top: 50%;
+}
+.orbital-tool {
+  position: absolute;
+  width: 94px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: var(--field);
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.orbital-tool span {
+  font-size: 23px;
+  line-height: 1;
+  color: var(--amber);
+}
+.tool-skills {
+  left: calc(50% - 205px);
+  top: calc(50% - 205px);
+}
+.tool-memory {
+  left: calc(50% + 205px);
+  top: calc(50% - 205px);
+}
+.tool-routines {
+  left: calc(50% + 205px);
+  top: calc(50% + 205px);
+}
+.tool-apps {
+  left: calc(50% - 205px);
+  top: calc(50% + 205px);
+}
+.center-object .eyebrow {
+  max-width: 140px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.center-object:hover {
+  background: #283322;
+}
+.orbit.list {
+  height: auto;
+  min-height: 440px;
+}
+.orbit.list .orbital-tool {
+  position: static;
+  transform: none;
+  width: 100%;
+  height: 38px;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+}
+.orbit.list .orbital-tool span {
+  font-size: 18px;
+}
+@media (min-width: 721px) and (max-width: 1120px) {
+  .orbit-ring.outer {
+    width: 360px;
+    height: 360px;
+  }
+  .orbit-ring.inner {
+    width: 270px;
+    height: 270px;
+  }
+  .sources-node {
+    top: calc(50% - 135px);
+  }
+  .projects-node {
+    top: calc(50% + 135px);
+  }
+  .drafts-node {
+    left: calc(50% + 135px);
+  }
+  .runs-node {
+    left: calc(50% - 135px);
+  }
+  .tool-skills {
+    left: calc(50% - 135px);
+    top: calc(50% - 205px);
+  }
+  .tool-memory {
+    left: calc(50% + 135px);
+    top: calc(50% - 205px);
+  }
+  .tool-routines {
+    left: calc(50% + 135px);
+    top: calc(50% + 205px);
+  }
+  .tool-apps {
+    left: calc(50% - 135px);
+    top: calc(50% + 205px);
+  }
+}
+@media (max-width: 720px) {
+  .orbit {
+    height: auto;
+  }
+  .orbit .node {
+    position: static;
+    transform: none;
+  }
+  .orbit .orbital-tool {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: 50px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .orbit .orbital-tool span {
+    font-size: 20px;
+  }
+}

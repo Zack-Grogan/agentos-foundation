@@ -53,7 +53,7 @@
               New capture <span>＋</span>
             </button>
           </section>
-          <section class="instrument procedure-instrument">
+          <section class="instrument procedure-instrument" id="procedure-panel">
             <div class="section-heading">
               <h2><span class="instrument-icon">⌁</span> Procedure</h2>
               <span class="tag">MANUAL</span>
@@ -73,7 +73,7 @@
               </div>
             </dl>
             <p class="instrument-note">
-              Source-linked drafts. No background execution.
+              Source-linked drafts with review before adoption.
             </p>
           </section>
         </aside>
@@ -100,13 +100,30 @@
               <span class="node-icon">⌁</span><strong>Runs</strong
               ><span id="run-count">0 recorded</span>
             </button>
-            <div class="center-object">
+            <button class="orbital-tool tool-skills" id="skills-orbit">
+              <span>⌘</span> Skills
+            </button>
+            <button class="orbital-tool tool-memory" id="memory-orbit">
+              <span>▤</span> Memory
+            </button>
+            <button class="orbital-tool tool-routines" id="routines-orbit">
+              <span>◷</span> Routines
+            </button>
+            <button class="orbital-tool tool-apps" id="apps-orbit">
+              <span>⊞</span> Apps
+            </button>
+            <button
+              class="center-object"
+              id="workspace-center"
+              aria-label="Open workspace views"
+            >
               <span class="eyebrow">WORK STUDIO</span
               ><span class="center-symbol">a</span
               ><span id="center-readout">No drafts yet</span
               ><small>source → draft → decision</small>
-            </div>
+            </button>
           </div>
+          <div id="domain-surface" hidden></div>
           <div class="map-caption">
             <p>Select a record. Follow its sources.</p>
             <button id="view-mode" aria-pressed="false">List view</button>
@@ -117,7 +134,7 @@
           id="review-panel"
           aria-label="Review and activity"
         >
-          <section class="instrument">
+          <section class="instrument" id="review-widget">
             <div class="section-heading">
               <h2><span class="instrument-icon">◇</span> Review queue</h2>
               <span class="tag" id="review-count">0 PENDING</span>
@@ -144,7 +161,7 @@
         </aside>
       </div>
       <div class="workspace-controls" aria-label="Workspace controls">
-        <span class="local-state">● Schedules off</span
+        <button class="local-state" id="routine-control">● Schedules off</button
         ><button id="refresh">Refresh</button
         ><button id="arrange">All instruments</button>
       </div>
@@ -191,7 +208,10 @@
           <p class="eyebrow" id="inspector-type">INSPECTOR</p>
           <h2 id="inspector-title">Details</h2>
         </div>
-        <button id="close-inspector" aria-label="Close inspector">✕</button>
+        <div>
+          <button id="inspector-back" hidden>Back</button
+          ><button id="close-inspector" aria-label="Close inspector">✕</button>
+        </div>
       </div>
       <div id="inspector-body"></div>
     </dialog>

@@ -7,9 +7,10 @@
     "Tasks",
     "Decisions"
   ],
-  "composition": "board",
+  "composition": "orbital",
   "first_job": "Turn a request into a reviewable action plan.",
   "external_writes": false,
   "routines_enabled": false,
-  "provider": "deterministic-reference"
+  "provider": "deterministic-reference",
+  "detail_view": "board"
 }

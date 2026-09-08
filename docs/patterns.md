@@ -14,7 +14,7 @@ Reviewed source on 2026-09-08. This is an architectural reading, not a new test 
 | `apps/desk/execution.py`, `tests/coinbase/test_live_lifecycle.py` | Named execution role and durable order lifecycle call path | Keep external execution separate from planning; preserve request identity | A financial workflow is not included in this generic reference |
 | `tests/assistant/test_conversation_stream.py` | Duplicate turn prevention, partial reply preservation, disconnect/stop distinctions | Build composer behavior around persisted events | Streaming UI alone cannot prove cancellation |
 | `apps/core/auth.py` | Direct local peer/Host checks and separate shared-access path | Local-only is a deliberate boundary | It is not multi-user authentication |
-| Earlier AgentOS `src/shared/layout.ts`, `src/server/layout.ts` | Stable widget IDs, bounded sizes and layout revision checks | Persist presentation separately and reject stale edits | Browser-local reference preferences do not implement cross-device layout sync |
+| Earlier AgentOS `src/shared/layout.ts`, `src/server/layout.ts` | Stable widget IDs, bounded sizes and layout revision checks | Persist presentation separately and reject stale edits | Server-local layout persistence is distinct from cross-device synchronization |
 | Earlier AgentOS project skill | Capture produces a sourced plan draft without activation | First loop should end at a reviewable artifact | This repo provides an original implementation rather than copying the app |
 
 ## Conversation-derived product intent

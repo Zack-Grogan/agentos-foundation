@@ -14,52 +14,166 @@ class ServerTests(unittest.TestCase):
         self.thread.start()
         self.port = self.server.server_port
         self.cookie = None
-        _, _, headers = self.call('GET', '/')
-        self.cookie = headers['Set-Cookie'].split(';')[0]
-        _, value, _ = self.call('GET', '/api/session')
-        self.csrf = value['csrf']
+        _, _, headers = self.call("GET", "/")
+        self.cookie = headers["Set-Cookie"].split(";")[0]
+        _, value, _ = self.call("GET", "/api/session")
+        self.csrf = value["csrf"]
 
     def tearDown(self):
-        self.server.shutdown(); self.server.server_close(); self.thread.join(); self.tmp.cleanup()
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join()
+        self.tmp.cleanup()
 
     def call(self, method, path, body=None, headers=None):
-        h = {'Cookie': self.cookie} if self.cookie else {}
+        h = {"Cookie": self.cookie} if self.cookie else {}
         h.update(headers or {})
-        c = http.client.HTTPConnection('127.0.0.1', self.port, timeout=3)
-        c.request(method, path, json.dumps(body) if body is not None else None, headers=h)
-        r = c.getresponse(); raw = r.read(); status = r.status; hs = dict(r.getheaders()); c.close()
-        return status, json.loads(raw) if hs.get('Content-Type', '').startswith('application/json') else raw, hs
+        c = http.client.HTTPConnection("127.0.0.1", self.port, timeout=3)
+        c.request(
+            method, path, json.dumps(body) if body is not None else None, headers=h
+        )
+        r = c.getresponse()
+        raw = r.read()
+        status = r.status
+        hs = dict(r.getheaders())
+        c.close()
+        return (
+            status,
+            json.loads(raw)
+            if hs.get("Content-Type", "").startswith("application/json")
+            else raw,
+            hs,
+        )
 
     def auth(self):
-        return {'Origin': f'http://127.0.0.1:{self.port}', 'X-CSRF-Token': self.csrf, 'Content-Type': 'application/json'}
+        return {
+            "Origin": f"http://127.0.0.1:{self.port}",
+            "X-CSRF-Token": self.csrf,
+            "Content-Type": "application/json",
+        }
 
     def test_real_http_flow(self):
-        status, source, _ = self.call('POST', '/api/capture', {'title': 'Example', 'body': 'A useful brief', 'request_id': 'a'}, self.auth())
+        status, source, _ = self.call(
+            "POST",
+            "/api/capture",
+            {"title": "Example", "body": "A useful brief", "request_id": "a"},
+            self.auth(),
+        )
         self.assertEqual(status, 200)
-        status, draft, _ = self.call('POST', '/api/draft', {'source_id': source['id'], 'request_id': 'b'}, self.auth())
+        status, draft, _ = self.call(
+            "POST",
+            "/api/draft",
+            {"source_id": source["id"], "request_id": "b"},
+            self.auth(),
+        )
         self.assertEqual(status, 200)
-        status, _, _ = self.call('POST', '/api/review', {'artifact_id': draft['id'], 'expected_digest': draft['digest'], 'decision': 'accepted'}, self.auth())
+        status, _, _ = self.call(
+            "POST",
+            "/api/review",
+            {
+                "artifact_id": draft["id"],
+                "expected_digest": draft["digest"],
+                "decision": "accepted",
+            },
+            self.auth(),
+        )
         self.assertEqual(status, 200)
-        self.assertEqual(len(self.call('GET', '/api/state')[1]['projects']), 1)
+        self.assertEqual(len(self.call("GET", "/api/state")[1]["projects"]), 1)
 
     def test_cross_origin_and_missing_csrf_denied(self):
-        body = {'title': 'Example', 'body': 'brief', 'request_id': 'a'}
-        for headers in [{}, {**self.auth(), 'Origin': 'https://untrusted.example'}, {**self.auth(), 'X-CSRF-Token': 'wrong'}]:
-            self.assertEqual(self.call('POST', '/api/capture', body, headers)[0], 403)
+        body = {"title": "Example", "body": "brief", "request_id": "a"}
+        for headers in [
+            {},
+            {**self.auth(), "Origin": "https://untrusted.example"},
+            {**self.auth(), "X-CSRF-Token": "wrong"},
+        ]:
+            self.assertEqual(self.call("POST", "/api/capture", body, headers)[0], 403)
 
     def test_host_and_forwarded_header_denied(self):
-        for h in [{'Host': 'evil.example'}, {'X-Forwarded-For': '127.0.0.1'}, {'Sec-Fetch-Site': 'cross-site'}]:
-            self.assertEqual(self.call('GET', '/', headers=h)[0], 403)
+        for h in [
+            {"Host": "evil.example"},
+            {"X-Forwarded-For": "127.0.0.1"},
+            {"Sec-Fetch-Site": "cross-site"},
+        ]:
+            self.assertEqual(self.call("GET", "/", headers=h)[0], 403)
 
     def test_only_named_assets_and_operations(self):
-        for path in ['/../README.md', '/.agentos/workspace.sqlite3', '/api/file?path=secret', '/%2e%2e/README.md']:
-            self.assertEqual(self.call('GET', path)[0], 404)
-        self.assertEqual(self.call('POST', '/api/shell', {}, self.auth())[0], 404)
-        self.assertEqual(self.call('POST', '/api/capture', {'command': 'anything'}, self.auth())[0], 400)
+        for path in [
+            "/../README.md",
+            "/.agentos/workspace.sqlite3",
+            "/api/file?path=secret",
+            "/%2e%2e/README.md",
+        ]:
+            self.assertEqual(self.call("GET", path)[0], 404)
+        self.assertEqual(self.call("POST", "/api/shell", {}, self.auth())[0], 404)
+        self.assertEqual(
+            self.call("POST", "/api/capture", {"command": "anything"}, self.auth())[0],
+            400,
+        )
 
     def test_untrusted_text_is_data(self):
-        text = '<script>window.compromised=true</script>'
-        status, value, _ = self.call('POST', '/api/capture', {'title': 'Example', 'body': text, 'request_id': 'a'}, self.auth())
-        self.assertEqual(status, 200); self.assertEqual(value['body'], text)
-        html = self.call('GET', '/')[1]
+        text = "<script>window.compromised=true</script>"
+        status, value, _ = self.call(
+            "POST",
+            "/api/capture",
+            {"title": "Example", "body": text, "request_id": "a"},
+            self.auth(),
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(value["body"], text)
+        html = self.call("GET", "/")[1]
         self.assertNotIn(text.encode(), html)
+
+    def test_background_job_and_persistent_layout(self):
+        import time
+
+        status, source, _ = self.call(
+            "POST",
+            "/api/capture",
+            {
+                "title": "Queued example",
+                "body": "Inspect one source.",
+                "request_id": "queued-source",
+            },
+            self.auth(),
+        )
+        status, job, _ = self.call(
+            "POST",
+            "/api/jobs",
+            {
+                "source_id": source["id"],
+                "request_id": "queued-job",
+                "provider_id": "local",
+            },
+            self.auth(),
+        )
+        self.assertEqual(status, 200)
+        deadline = time.monotonic() + 5
+        while time.monotonic() < deadline:
+            state = self.call("GET", "/api/state")[1]
+            if state["jobs"][0]["status"] == "succeeded":
+                break
+            time.sleep(0.1)
+        self.assertEqual(state["jobs"][0]["status"], "succeeded")
+        self.assertEqual(len(state["artifacts"]), 1)
+        desired = state["layout"]
+        desired["widgets"][0]["visible"] = False
+        self.assertEqual(
+            self.call("POST", "/api/layout", {"layout": desired}, self.auth())[0], 200
+        )
+        self.assertFalse(
+            self.call("GET", "/api/state")[1]["layout"]["widgets"][0]["visible"]
+        )
+        self.assertEqual(
+            self.call("POST", "/api/layout", {"layout": desired}, self.auth())[0], 409
+        )
+
+    def test_project_skill_reader_is_allowlisted(self):
+        status, skills, _ = self.call("GET", "/api/skills")
+        self.assertEqual(status, 200)
+        self.assertTrue(any(s["name"] == "composer-design" for s in skills))
+        self.assertTrue(all("text" not in s for s in skills))
+        status, skill, _ = self.call("GET", "/api/skills?id=composer-design")
+        self.assertEqual(status, 200)
+        self.assertIn("name: composer-design", skill["text"])
+        self.assertEqual(self.call("GET", "/api/skills?id=../../.env")[0], 404)
