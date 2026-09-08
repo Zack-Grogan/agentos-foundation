@@ -114,7 +114,7 @@ def main(argv=None):
                     store, args.source_id, args.request_id, args.provider
                 )
                 if not args.enqueue_only and job["status"] == "queued":
-                    run_once(store)
+                    run_once(store, job_id=job["id"])
                 with store.connect() as db:
                     value = jobs.read(db, job["id"])
             elif args.command == "work-once":

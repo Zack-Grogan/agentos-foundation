@@ -87,7 +87,7 @@ def enqueue(
         return insert(db)
 
 
-def claim(store):
+def claim(store, job_id=None):
     with store.connect() as db:
         db.execute("BEGIN IMMEDIATE")
         instant = utc(now())
@@ -106,7 +106,10 @@ def claim(store):
             save(db, job)
             store._event(db, "job.interrupted", job["id"])
         rows = db.execute(
-            "SELECT body FROM jobs WHERE status='queued' ORDER BY rowid LIMIT 1"
+            "SELECT body FROM jobs WHERE status='queued'"
+            + (" AND id=?" if job_id else "")
+            + " ORDER BY rowid LIMIT 1",
+            (job_id,) if job_id else (),
         ).fetchall()
         if not rows:
             return None

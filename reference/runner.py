@@ -11,8 +11,8 @@ from . import jobs
 from .providers import ROOT
 
 
-def run_once(store, stop_event=None):
-    claimed = jobs.claim(store)
+def run_once(store, stop_event=None, *, job_id=None):
+    claimed = jobs.claim(store, job_id)
     if not claimed:
         return None
     job, source, config = claimed

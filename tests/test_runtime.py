@@ -362,3 +362,11 @@ class RuntimeTests(unittest.TestCase):
             server.shutdown()
             server.server_close()
             thread.join()
+
+    def test_explicit_job_does_not_consume_unrelated_queue(self):
+        first = self.job("first")
+        second = self.job("second")
+        result = run_once(self.store, job_id=second["id"])
+        self.assertEqual(result["id"], second["id"])
+        with self.store.connect() as db:
+            self.assertEqual(jobs.read(db, first["id"])["status"], "queued")

@@ -4,7 +4,7 @@ Checked locally on 2026-09-08 against this template, not its source applications
 
 ## Behavioral checks
 
-`python3 -W error::ResourceWarning -m unittest discover -s tests -v`: **38 tests passed** on macOS / Python 3.14.
+`python3 -W error::ResourceWarning -m unittest discover -s tests -v`: **39 tests passed** on macOS / Python 3.14.
 
 Coverage includes persisted capture/draft/review; duplicate and competing acceptance; source revisions and stale decisions; task status via the browser; explicit file import and symlink refusal; real child-process execution; configured HTTP and ACP peers through the complete job path; wall timeout and running cancellation; fenced result adoption; stale worker recovery; paused/due/coalesced interval routines; overlap and pause; persistent widget layout/CAS; old-schema migration; refusal of future/foreign schemas and missing databases; checksummed backup/restore with paused routines; manifest-based scaffolding, unrelated-file exclusion and read-only customization-preserving update planning; HTTP session/origin/CSRF/Host/path boundaries.
 
