@@ -1,0 +1,102 @@
+{
+  "reviewed_at": "2026-09-08",
+  "method": "Source/docs review; no live provider sessions",
+  "sources": [
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/server/src/provider/Drivers/ClaudeDriver.ts",
+      "sha256": "e44a251eaf94e5d9af6550d9c5b85e445d75284d988aadf2c2ee698a6d58274a"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/server/src/provider/Drivers/CodexDriver.ts",
+      "sha256": "3375fbd7ab486d315d738f3284bdc09522acd4c0ea81570a457bf4349426a223"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/server/src/provider/acp/AcpSessionRuntime.ts",
+      "sha256": "3c292f3874c72ec692cc590f2578ef9906c264eee5136b11e4b6bf98b6d7caf7"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/server/src/provider/acp/GrokAcpSupport.ts",
+      "sha256": "60f7f497b8e42007d4ce0636f03f363856bcda9491205a121995b44401ec9a6f"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/server/src/provider/acp/CursorAcpSupport.ts",
+      "sha256": "8e27c798399b5bd37a550cd99b4ac4c63b868838446628765952e9c04f75fb4c"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/web/src/composerDraftStore.ts",
+      "sha256": "7158f42444475c0cf91fa2b76caf6acc90b6b571f8b5d97ebfe7e0f9194e51a6"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/web/src/components/chat/ComposerPrimaryActions.tsx",
+      "sha256": "7c2139ba6d761a64b454666871ead5f43922a691cfa7d2e2416d72189b37fbbc"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "apps/web/src/components/chat/composerSubmission.ts",
+      "sha256": "749875a30cf7e674642756846924760cd621d2ef2a88f8d7af47113100dd0503"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "docs/user/composer.md",
+      "sha256": "dc43b190818a0356f06b969a92ce2d49184f1d4c67c598cb4b56b502e71c4dd4"
+    },
+    {
+      "repository": "pingdotgg/t3code",
+      "revision": "47eed9face4186635488fba5f2494eddd13f6491",
+      "path": "docs/internals/providers.md",
+      "sha256": "214c13013f48d43c912733fb53678739175b9dbe6e597cbe0451e4cd8b3625ff"
+    },
+    {
+      "repository": "NousResearch/hermes-agent",
+      "revision": "c8aa5608c24e3636e77c267650c0f1f52e44adb0",
+      "path": "agent/provider_registry.py",
+      "sha256": "e9dd5c7c6586dc5b946baec6d900d3812f5a280e64f7e0caf2a8c5c46edb6e60"
+    },
+    {
+      "repository": "NousResearch/hermes-agent",
+      "revision": "c8aa5608c24e3636e77c267650c0f1f52e44adb0",
+      "path": "acp_adapter/server.py",
+      "sha256": "dcad3c59a9b8a460d293a0825ed1faeede5ae3848303825165f58b7f5eec13d4"
+    },
+    {
+      "repository": "NousResearch/hermes-agent",
+      "revision": "c8aa5608c24e3636e77c267650c0f1f52e44adb0",
+      "path": "acp_adapter/session.py",
+      "sha256": "baddf115a850846b099ed575ca0215bd586a1a49ffee6e510de8b30f9a97fee5"
+    },
+    {
+      "repository": "vercel/ai-elements",
+      "revision": "6a9d5b1822ffb10bba4bd97175f01edd7d8651cd",
+      "path": "apps/docs/content/components/(chatbot)/prompt-input.mdx",
+      "sha256": "e582b606d9f13870179ebedbb913f8b3fd38461a78772dcfb08f42511f9b4a1c"
+    },
+    {
+      "repository": "vercel/ai-elements",
+      "revision": "6a9d5b1822ffb10bba4bd97175f01edd7d8651cd",
+      "path": "packages/elements/src/prompt-input.tsx",
+      "sha256": "cf43baf5baa444b4ae06d250643b3fb2efd329c85f9b31a43e3aaf481dd27305"
+    },
+    {
+      "repository": "zed-industries/claude-agent-acp",
+      "revision": "cc528fb5e9d8289aabccec3cce4a0e464b791daa",
+      "path": "README.md",
+      "sha256": "88ef899e624498087831bf8fa1582cbeb395a0f9973934228ec7fb4ec143b126"
+    }
+  ]
+}

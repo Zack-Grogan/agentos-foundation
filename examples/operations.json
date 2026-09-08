@@ -1,0 +1,15 @@
+{
+  "name": "Operations workspace",
+  "profile": "operations",
+  "objects": [
+    "Intake",
+    "Projects",
+    "Tasks",
+    "Decisions"
+  ],
+  "composition": "board",
+  "first_job": "Turn a request into a reviewable action plan.",
+  "external_writes": false,
+  "routines_enabled": false,
+  "provider": "deterministic-reference"
+}

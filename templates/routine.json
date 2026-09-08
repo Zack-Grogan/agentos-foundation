@@ -1,0 +1,15 @@
+{
+  "id": "weekly-review",
+  "revision": 1,
+  "skill_id": "capture-to-plan",
+  "enabled": false,
+  "timezone": "UTC",
+  "schedule": "0 9 * * 1",
+  "missed_run_policy": "latest",
+  "overlap": "forbid",
+  "timeout_seconds": 300,
+  "max_attempts": 2,
+  "output": "private/artifacts",
+  "owner": "configure-before-enabling",
+  "external_writes": false
+}

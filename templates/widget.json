@@ -1,0 +1,21 @@
+{
+  "id": "review-inbox",
+  "question": "Which results need my decision?",
+  "source": "artifact review projection",
+  "refresh": "after review event",
+  "minimum_width": 280,
+  "states": [
+    "empty",
+    "partial",
+    "stale",
+    "blocked",
+    "failed",
+    "ready"
+  ],
+  "primary_action": "inspect-artifact",
+  "layout": {
+    "size": "compact",
+    "visible": true
+  },
+  "narrow_position": 1
+}

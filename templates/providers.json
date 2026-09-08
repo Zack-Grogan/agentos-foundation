@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "automatic_billing_fallback": false,
+  "instances": [
+    {
+      "instance_id": "codex-acp",
+      "transport": "acp",
+      "enabled": false,
+      "command": [
+        "<absolute-codex-acp-path>"
+      ],
+      "auth_kind": "provider-managed-login",
+      "billing_route": "subscription-or-api-explicit",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    },
+    {
+      "instance_id": "claude-acp",
+      "transport": "acp",
+      "enabled": false,
+      "command": [
+        "<absolute-claude-agent-acp-path>"
+      ],
+      "auth_kind": "user-owned-native-claude-code-login",
+      "billing_route": "own-subscription-via-unmodified-native-runtime",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false,
+      "credential_intermediation": false
+    },
+    {
+      "instance_id": "grok-build",
+      "transport": "acp",
+      "enabled": false,
+      "command": [
+        "<absolute-grok-path>",
+        "agent",
+        "stdio"
+      ],
+      "auth_kind": "provider-managed-login",
+      "billing_route": "verify-entitlement",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    },
+    {
+      "instance_id": "cursor",
+      "transport": "acp",
+      "enabled": false,
+      "command": [
+        "<absolute-cursor-agent-path>",
+        "acp"
+      ],
+      "auth_kind": "provider-managed-login",
+      "billing_route": "verify-entitlement",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    },
+    {
+      "instance_id": "hermes",
+      "transport": "acp",
+      "enabled": false,
+      "command": [
+        "<absolute-hermes-path>",
+        "acp"
+      ],
+      "auth_kind": "configured-backend",
+      "billing_route": "verify-backend",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    },
+    {
+      "instance_id": "openai-endpoint",
+      "transport": "openai-chat",
+      "enabled": false,
+      "command": [],
+      "auth_kind": "env-key",
+      "billing_route": "api",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    },
+    {
+      "instance_id": "openai-responses",
+      "transport": "openai-responses",
+      "enabled": false,
+      "command": [],
+      "auth_kind": "env-key",
+      "billing_route": "api",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    },
+    {
+      "instance_id": "anthropic-endpoint",
+      "transport": "anthropic-messages",
+      "enabled": false,
+      "command": [],
+      "auth_kind": "env-key",
+      "billing_route": "api",
+      "model_id": null,
+      "verification_state": "specified",
+      "last_verified_at": null,
+      "global_integrations_allowed": false
+    }
+  ]
+}

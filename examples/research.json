@@ -1,0 +1,15 @@
+{
+  "name": "Research studio",
+  "profile": "research",
+  "objects": [
+    "Sources",
+    "Questions",
+    "Notes",
+    "Briefs"
+  ],
+  "composition": "workbench",
+  "first_job": "Turn selected evidence into a reviewable research plan.",
+  "external_writes": false,
+  "routines_enabled": false,
+  "provider": "deterministic-reference"
+}

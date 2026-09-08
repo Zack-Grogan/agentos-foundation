@@ -1,0 +1,12 @@
+.agentos/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+test-results/
+private/
+*.sqlite3
+*.sqlite3-*

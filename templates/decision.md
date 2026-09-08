@@ -1,0 +1,11 @@
+# Decision [ID]
+Date: [UTC]
+Owner: [person]
+Status: proposed
+Question: [decision]
+Options: [alternatives]
+Chosen approach: [pending or accepted]
+Evidence: [source IDs/revisions]
+Tradeoffs: [concrete implications]
+Revisit when: [condition]
+Supersedes: [ID or none]

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentOS · Work studio</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#workspace">Skip to workspace</a>
+    <header class="observation-strip" aria-label="Workspace observations">
+      <div class="strip-observation">
+        Saved workspace <small id="as-of">Connecting…</small>
+      </div>
+      <div class="strip-readouts">
+        <button data-collection="sources">
+          Sources <b id="strip-sources">0</b></button
+        ><span class="separator"></span
+        ><button data-collection="artifacts">
+          Needs review <b id="strip-reviews">0</b></button
+        ><span class="separator"></span
+        ><button data-collection="projects">
+          Accepted projects <b id="strip-projects">0</b></button
+        ><span class="strip-mode">Deterministic planner · local only</span>
+      </div>
+    </header>
+    <main id="workspace" tabindex="-1" aria-label="Work studio">
+      <div id="notice" role="status" aria-live="polite"></div>
+      <div class="workspace-grid">
+        <aside
+          class="instrument-rail capture-instrument"
+          id="capture-panel"
+          aria-label="Sources and procedures"
+        >
+          <section class="instrument" id="sources-panel">
+            <div class="section-heading">
+              <h2><span class="instrument-icon">▤</span> Source library</h2>
+              <button
+                data-collection="sources"
+                aria-label="Open source library"
+                class="open-app"
+              >
+                ↗
+              </button>
+            </div>
+            <label class="search-label"
+              ><span class="sr-only">Find a source</span
+              ><input id="search" type="search" placeholder="Find a source"
+            /></label>
+            <div id="sources"></div>
+            <button id="new-capture" class="quiet-action">
+              New capture <span>＋</span>
+            </button>
+          </section>
+          <section class="instrument procedure-instrument">
+            <div class="section-heading">
+              <h2><span class="instrument-icon">⌁</span> Procedure</h2>
+              <span class="tag">MANUAL</span>
+            </div>
+            <p class="procedure-name">Capture to plan</p>
+            <p class="muted">
+              Select a source, draft a plan, then decide what to adopt.
+            </p>
+            <dl class="readout">
+              <div>
+                <dt>Planner</dt>
+                <dd>Deterministic</dd>
+              </div>
+              <div>
+                <dt>External actions</dt>
+                <dd>None</dd>
+              </div>
+            </dl>
+            <p class="instrument-note">
+              Source-linked drafts. No background execution.
+            </p>
+          </section>
+        </aside>
+        <section class="field" aria-label="Explore your work">
+          <h1 class="sr-only">Work studio</h1>
+          <div class="orbit" id="orbit">
+            <div class="orbit-ring outer"></div>
+            <div class="orbit-ring inner"></div>
+            <div class="spoke horizontal"></div>
+            <div class="spoke vertical"></div>
+            <button class="node sources-node" data-collection="sources">
+              <span class="node-icon">▤</span><strong>Sources</strong
+              ><span id="source-count">0 captured</span>
+            </button>
+            <button class="node drafts-node" data-collection="artifacts">
+              <span class="node-icon">✧</span><strong>Drafts</strong
+              ><span id="draft-count">0 created</span>
+            </button>
+            <button class="node projects-node" data-collection="projects">
+              <span class="node-icon">◇</span><strong>Projects</strong
+              ><span id="project-count">0 accepted</span>
+            </button>
+            <button class="node runs-node" data-collection="runs">
+              <span class="node-icon">⌁</span><strong>Runs</strong
+              ><span id="run-count">0 recorded</span>
+            </button>
+            <div class="center-object">
+              <span class="eyebrow">WORK STUDIO</span
+              ><span class="center-symbol">a</span
+              ><span id="center-readout">No drafts yet</span
+              ><small>source → draft → decision</small>
+            </div>
+          </div>
+          <div class="map-caption">
+            <p>Select a record. Follow its sources.</p>
+            <button id="view-mode" aria-pressed="false">List view</button>
+          </div>
+        </section>
+        <aside
+          class="instrument-rail review-instrument"
+          id="review-panel"
+          aria-label="Review and activity"
+        >
+          <section class="instrument">
+            <div class="section-heading">
+              <h2><span class="instrument-icon">◇</span> Review queue</h2>
+              <span class="tag" id="review-count">0 PENDING</span>
+            </div>
+            <div id="reviews"></div>
+            <p class="instrument-note">
+              Accept a draft into a local project.<br />Proposed tasks remain
+              unexecuted.
+            </p>
+          </section>
+          <section class="instrument" id="activity-panel">
+            <div class="section-heading">
+              <h2><span class="instrument-icon">⌁</span> Recent activity</h2>
+              <button
+                data-collection="runs"
+                aria-label="Open recorded runs"
+                class="open-app"
+              >
+                ↗
+              </button>
+            </div>
+            <div id="activity"></div>
+          </section>
+        </aside>
+      </div>
+      <div class="workspace-controls" aria-label="Workspace controls">
+        <span class="local-state">● Schedules off</span
+        ><button id="refresh">Refresh</button
+        ><button id="arrange">All instruments</button>
+      </div>
+      <button class="corner" id="guide-button" aria-label="Workspace guide">
+        <span class="guide-mark">a</span><span>Guide</span>
+      </button>
+    </main>
+    <dialog id="capture-dialog" aria-labelledby="capture-title">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">CAPTURE</p>
+          <h2 id="capture-title">Give the work a source.</h2>
+        </div>
+        <button id="close-capture" aria-label="Close capture">✕</button>
+      </div>
+      <form id="capture-form">
+        <label for="title">Name the work</label
+        ><input
+          id="title"
+          name="title"
+          required
+          maxlength="120"
+          placeholder="A brief, a project, a question…"
+        /><label for="body">Source or brief</label
+        ><textarea
+          id="body"
+          name="body"
+          required
+          maxlength="12000"
+          rows="6"
+          placeholder="What do you want to understand or build?"
+        ></textarea
+        ><button class="primary" type="submit">
+          Capture source <span>↗</span>
+        </button>
+      </form>
+      <p class="footnote">
+        Saved on this machine. Nothing is sent to a provider.
+      </p>
+    </dialog>
+    <dialog id="inspector" aria-labelledby="inspector-title">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow" id="inspector-type">INSPECTOR</p>
+          <h2 id="inspector-title">Details</h2>
+        </div>
+        <button id="close-inspector" aria-label="Close inspector">✕</button>
+      </div>
+      <div id="inspector-body"></div>
+    </dialog>
+  </body>
+</html>

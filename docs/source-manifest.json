@@ -1,0 +1,108 @@
+{
+  "review_date": "2026-09-08",
+  "method": "Focused source reading; source apps not rerun",
+  "sources": [
+    {
+      "project": "G-Portfolio",
+      "path": ".impeccable.md",
+      "sha256": "3bb5532548554efe713a1a038f11a59523aa4e3954bba715a2bf5c5f6abfc2b9"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "skills/index.md",
+      "sha256": "4063bd276dd8df8fed8a3d345363e9b98190b701573d59aacd711bee5108a1bc"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/core/workspace.py",
+      "sha256": "2f6da65cc38b21cb24393e633a49a260591f3c04e1051234acfb1af2b9155a21"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "static/workspace.js",
+      "sha256": "bc76d011422f9b8473fd41712e0bf964cd5b464e2a602571d180ef311afe1d05"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/assistant/memory.py",
+      "sha256": "6e8e06e545c4d6c4209df59b27d9aa3921f702b18483b65d9c897127b7e5e307"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/assistant/skills.py",
+      "sha256": "86989c8c8e8fd8f8cae82cd3b47d75919d2fab7b5fc95820086724f0468e5515"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/routines/scheduler.py",
+      "sha256": "6eb399c659322554bd7605c0d31dc21a473c32e0858cb318a3f6a7b75bffda1a"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/routines/worker.py",
+      "sha256": "ca299cf36101e63d3e6f8e3b880489819f7b7765dcf3c34498c048b7f631911c"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/desk/execution.py",
+      "sha256": "b679ed077491421bf97861584897efa6308c993f6d8ab6e0eb55d29e3200d4b4"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "apps/core/auth.py",
+      "sha256": "bdd6dafe4daa798c6bffa0f775345d8fb6c084563e874d66836248cc513fc6f3"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "tests/assistant/test_conversation_stream.py",
+      "sha256": "27af34db41b8cf32b49aaf0943c69f6bfc91b5bb3071f24356b88291c23f478a"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "tests/coinbase/test_live_lifecycle.py",
+      "sha256": "8ea56c3ac8ca71d8dbb18fae160be0cc8d9a0fead0119e1228886d6412cbb106"
+    },
+    {
+      "project": "AgentOS",
+      "path": "src/shared/layout.ts",
+      "sha256": "126ef0b823b27297437106d2c95d7fbc7f867272d5b0cb789380e3474ad8ea11"
+    },
+    {
+      "project": "AgentOS",
+      "path": "src/server/layout.ts",
+      "sha256": "a47a7a3042ec431f45f5049abcd1a24f4bccc39578fbdeab005a0f9779a888a7"
+    },
+    {
+      "project": "AgentOS",
+      "path": ".agents/skills/capture-to-plan/SKILL.md",
+      "sha256": "456c4b5daacf2f6e3d6749e494d5e9abe217e32732569d314c534c6cbd1b7216"
+    },
+    {
+      "document": "ARMS-Agentic-OS-Guide.pdf",
+      "pages": 17,
+      "sha256": "ff64c1ded9e0d40a4741a850543b9fd155461a142c23b1cd0861b3f5bc8c9eee",
+      "redistributed": false
+    },
+    {
+      "document": "ARMS-ChatGPT-Codex-Guide.pdf",
+      "pages": 17,
+      "sha256": "9e3c1f95147de77b457b77c6c9b4adcc0b461ef5c599b151d21e3db957483ade",
+      "redistributed": false
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "templates/core/home.html",
+      "sha256": "23f0abbd660896c7881b05ea08c31d6fb70c46c58e142d22b53fe2d73b7e80e3"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "templates/core/workspace_base.html",
+      "sha256": "a6a1dcc6cde697d6eece21a71d0eef3beb2f176d0228b8b2e07f7a2770df2d13"
+    },
+    {
+      "project": "G-Portfolio",
+      "path": "static/workspace.css",
+      "sha256": "62afebadd2cc3acc051b43525e9eac995d2fb94295116a7d0cbfe84ddd3db8c5"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Monitoring desk",
+  "profile": "monitoring",
+  "objects": [
+    "Observations",
+    "Assets",
+    "Alerts",
+    "Reviews"
+  ],
+  "composition": "anchored-map",
+  "first_job": "Turn a dated observation into a reviewable investigation plan.",
+  "external_writes": false,
+  "routines_enabled": false,
+  "provider": "deterministic-reference"
+}

@@ -1,0 +1,10 @@
+# Review [artifact ID / revision]
+Digest: [exact content hash]
+Sources and time window: [references]
+Validation: [passed/failed and evidence]
+Proposed result/effect: [specific scope]
+Decision: pending
+Reviewer and time: [on decision]
+Reason / corrections: [notes]
+Acceptance effect: [what changes exactly]
+External permission: [separate unless expressly included]

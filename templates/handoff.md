@@ -1,0 +1,11 @@
+# Handoff
+Goal and scope: [current objective]
+Implemented: [concrete behavior]
+Verified: [commands/actions, environment, outcomes]
+Not verified: [remaining boundaries]
+Sources and revisions: [pointers]
+Run/artifact IDs: [evidence]
+Start / stop: [exact commands]
+Runtime data / backup / restore: [private locations and procedure]
+Current blockers: [recovery action]
+Next useful step: [bounded work]
